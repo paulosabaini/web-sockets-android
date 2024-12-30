@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.Modifier
 import com.example.websockets.ui.theme.WebSocketsTheme
+import org.koin.androidx.compose.KoinAndroidContext
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -21,13 +22,15 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             WebSocketsTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = {
-                        TopAppBar(title = { Text("WebSockets") })
-                    },
-                ) { innerPadding ->
-                    AppScreen(modifier = Modifier.padding(innerPadding))
+                KoinAndroidContext {
+                    Scaffold(
+                        modifier = Modifier.fillMaxSize(),
+                        topBar = {
+                            TopAppBar(title = { Text("WebSockets") })
+                        },
+                    ) { innerPadding ->
+                        AppScreen(modifier = Modifier.padding(innerPadding))
+                    }
                 }
             }
         }
